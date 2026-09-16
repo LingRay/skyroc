@@ -1,4 +1,5 @@
 import { defaultThemeSettings, getAllPresets, showSuccessMessage, useSettingsTheme } from '@shell/theme';
+import { jsonClone } from '@skyroc/utils';
 import { Badge as ABadge, Button as AButton, Divider as ADivider } from 'antd';
 import { defu } from 'defu';
 import { useMemo } from 'react';
@@ -49,7 +50,7 @@ const ThemePreset = () => {
 
   function applyPreset(preset: Theme.ThemePreset): void {
     const mergedPreset = defu(preset, defaultThemeSettings);
-    const { colourWeakness, grayscale, layout, themeScheme, watermark, ...rest } = mergedPreset;
+    const { colourWeakness, grayscale, layout, themeScheme, watermark } = mergedPreset;
 
     setThemeScheme(themeScheme);
     setGrayscale(grayscale);
@@ -58,17 +59,8 @@ const ThemePreset = () => {
     setWatermarkEnableUserName(watermark.enableUserName);
     setWatermarkEnableTime(watermark.enableTime);
 
-    setSettings({
-      ...rest,
-      layout: { ...layout },
-      page: { ...rest.page },
-      header: { ...rest.header },
-      tab: { ...rest.tab },
-      sider: { ...rest.sider },
-      footer: { ...rest.footer },
-      watermark: { ...watermark },
-      tokens: { ...rest.tokens }
-    });
+    // 深拷贝后写入：避免 theme state 与 defaultThemeSettings / 预设 JSON 共享嵌套对象
+    setSettings(jsonClone(mergedPreset));
 
     showSuccessMessage(t('theme.appearance.preset.applySuccess'));
   }
