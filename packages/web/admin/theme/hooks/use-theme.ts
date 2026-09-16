@@ -1,7 +1,8 @@
 import { getPaletteColorByNumber } from '@skyroc/color';
 import { useNow, useSystemTheme } from '@skyroc/hooks/web';
 import { formatDateTime } from '@skyroc/utils';
-import { atom, useAtom, useAtomValue } from 'jotai';
+import { atom, useAtomValue } from 'jotai';
+import { useImmerAtom } from 'jotai-immer';
 import { useMemo } from 'react';
 import { defaultThemeSettings } from '../config/default';
 import type { ThemeColor, ThemeColorKey, ThemeLayoutMode, ThemeMode } from '../types';
@@ -23,7 +24,7 @@ export const themeUserNameAtom = atom<string | undefined>(undefined);
 export function useTheme() {
   const userName = useAtomValue(themeUserNameAtom);
 
-  const [settings, setSettingsAtom] = useAtom(themeSettingsAtom);
+  const [settings, setSettingsAtom] = useImmerAtom(themeSettingsAtom);
 
   const { isDarkMode: systemIsDark } = useSystemTheme();
 
@@ -87,7 +88,7 @@ export function useTheme() {
 
   /** Update settings with partial update */
   function setSettings(update: Partial<Theme.ThemeSetting>) {
-    setSettingsAtom(prev => ({ ...prev, ...update }));
+    setSettingsAtom(draft => { Object.assign(draft, update); });
   }
 
   /**
@@ -144,11 +145,14 @@ export function useTheme() {
       colorValue = getPaletteColorByNumber(color, 500, 'recommended');
     }
 
-    if (key === 'primary') {
-      setSettings({ themeColor: colorValue });
-    } else {
-      setSettings({ otherColor: { ...settings.otherColor, [key]: colorValue } });
-    }
+    setSettingsAtom(draft => {
+      if (key === 'primary') {
+        draft.themeColor = colorValue;
+        return;
+      }
+
+      draft.otherColor[key] = colorValue;
+    });
   }
 
   /**
@@ -157,11 +161,8 @@ export function useTheme() {
    * @param mode Theme layout mode
    */
   function setThemeLayout(mode: ThemeLayoutMode) {
-    setSettings({
-      layout: {
-        ...settings.layout,
-        mode
-      }
+    setSettingsAtom(draft => {
+      draft.layout.mode = mode;
     });
   }
 
@@ -171,14 +172,9 @@ export function useTheme() {
    * @param enable Whether to enable user name watermark
    */
   function setWatermarkEnableUserName(enable: boolean) {
-    const update = {
-      watermark: {
-        ...settings.watermark,
-        enableUserName: enable
-      }
-    };
-
-    setSettings(update);
+    setSettingsAtom(draft => {
+      draft.watermark.enableUserName = enable;
+    });
   }
 
   /**
@@ -187,14 +183,9 @@ export function useTheme() {
    * @param enable Whether to enable time watermark
    */
   function setWatermarkEnableTime(enable: boolean) {
-    const update = {
-      watermark: {
-        ...settings.watermark,
-        enableTime: enable
-      }
-    };
-
-    setSettings(update);
+    setSettingsAtom(draft => {
+      draft.watermark.enableTime = enable;
+    });
   }
 
   /** Only run timer when watermark is visible and time display is enabled */
@@ -212,7 +203,7 @@ export function useTheme() {
 
   /** Reset to default settings */
   function reset() {
-    setSettingsAtom(defaultThemeSettings);
+    setSettingsAtom(() => defaultThemeSettings);
   }
 
   return {

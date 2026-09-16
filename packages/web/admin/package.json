@@ -37,6 +37,8 @@
     "defu": "catalog:utils",
     "i18next": "catalog:i18n",
     "jotai": "catalog:core",
+    "immer": "catalog:core",
+    "jotai-immer": "catalog:core",
     "jotai-devtools": "catalog:web",
     "motion": "catalog:ui-shared",
     "nprogress": "catalog:ui-shared",

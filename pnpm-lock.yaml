@@ -208,9 +208,15 @@ catalogs:
     '@tanstack/react-query':
       specifier: ^5.90.12
       version: 5.90.21
+    immer:
+      specifier: ^11.1.18
+      version: 11.1.18
     jotai:
       specifier: 2.20.3
       version: 2.20.3
+    jotai-immer:
+      specifier: ^0.4.3
+      version: 0.4.3
     react:
       specifier: 19.1.0
       version: 19.1.0
@@ -2860,12 +2866,18 @@ importers:
       i18next:
         specifier: catalog:i18n
         version: 25.7.2(typescript@7.0.2)
+      immer:
+        specifier: catalog:core
+        version: 11.1.18
       jotai:
         specifier: catalog:core
         version: 2.20.3(@babel/core@8.0.1)(@babel/template@8.0.0)(@types/react@19.2.18)(react@19.1.0)
       jotai-devtools:
         specifier: 0.14.0
         version: 0.14.0(@types/react@19.2.18)(jotai@2.20.3(@babel/core@8.0.1)(@babel/template@8.0.0)(@types/react@19.2.18)(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(redux@5.0.1)
+      jotai-immer:
+        specifier: catalog:core
+        version: 0.4.3(immer@11.1.18)(jotai@2.20.3(@babel/core@8.0.1)(@babel/template@8.0.0)(@types/react@19.2.18)(react@19.1.0))
       motion:
         specifier: catalog:ui-shared
         version: 12.34.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -14642,6 +14654,9 @@ packages:
   immediate@3.0.6:
     resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
 
+  immer@11.1.18:
+    resolution: {integrity: sha512-EQyQtLiYW029lyoczMl/Hh4Xu7cDecSc58JRYpHyL4tIAu3eqd1yJzQX04d2BZHDkzFFvm6qJEJWOtfDSWAXbQ==}
+
   immer@9.0.21:
     resolution: {integrity: sha512-bc4NBHqOqSfRW7POMkHd51LvClaeMXpm8dx0e8oE2GORbq5aRK7Bxl4FyzVLdGtLmvLKL7BTDBG5ACQm4HWjTA==}
 
@@ -15261,6 +15276,12 @@ packages:
     peerDependencies:
       jotai: '>=2.20.0'
       react: '>=17.0.0'
+
+  jotai-immer@0.4.3:
+    resolution: {integrity: sha512-sJWiSweR294aDA/jeH6bKSKYVxRqgfxnLWaZmKw0/Hd6iGKLN4TSB3AHpFWQFDf0W+P3sEIkROr0ALlWQfCSeA==}
+    peerDependencies:
+      immer: '>=9.0.0'
+      jotai: '>=2.0.0'
 
   jotai@2.18.0:
     resolution: {integrity: sha512-XI38kGWAvtxAZ+cwHcTgJsd+kJOJGf3OfL4XYaXWZMZ7IIY8e53abpIHvtVn1eAgJ5dlgwlGFnP4psrZ/vZbtA==}
@@ -35873,6 +35894,8 @@ snapshots:
 
   immediate@3.0.6: {}
 
+  immer@11.1.18: {}
+
   immer@9.0.21: {}
 
   immutable@4.3.7: {}
@@ -36793,6 +36816,11 @@ snapshots:
       - '@types/react'
       - react-dom
       - redux
+
+  jotai-immer@0.4.3(immer@11.1.18)(jotai@2.20.3(@babel/core@8.0.1)(@babel/template@8.0.0)(@types/react@19.2.18)(react@19.1.0)):
+    dependencies:
+      immer: 11.1.18
+      jotai: 2.20.3(@babel/core@8.0.1)(@babel/template@8.0.0)(@types/react@19.2.18)(react@19.1.0)
 
   jotai@2.18.0(@babel/core@8.0.1)(@babel/template@7.28.6)(@types/react@19.2.18)(react@19.2.8):
     optionalDependencies:
