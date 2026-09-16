@@ -1,6 +1,15 @@
 import { defineConfig } from '@skyroc/web-admin-vite';
+import { codeInspectorPlugin } from 'code-inspector-plugin';
 
 export default defineConfig({
+  vite: {
+    plugins: [
+      codeInspectorPlugin({
+        bundler: 'vite',
+      })
+    ]
+  },
+
   application: {
     css: {
       additionalData: '@use "@/styles/scss/global.scss" as *;'

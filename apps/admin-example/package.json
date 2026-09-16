@@ -112,6 +112,7 @@
     "@unocss/preset-wind3": "catalog:dev",
     "@unocss/transformer-directives": "catalog:dev",
     "@unocss/transformer-variant-group": "catalog:dev",
+    "code-inspector-plugin": "^2.0.9",
     "eslint-plugin-react": "catalog:dev",
     "eslint-plugin-react-hooks": "catalog:dev",
     "eslint-plugin-react-refresh": "catalog:dev",

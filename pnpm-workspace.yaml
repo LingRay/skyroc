@@ -27,6 +27,7 @@ allowBuilds:
   es5-ext: false
   esbuild: true
   msw: true
+  node-pty: true
   sharp: true
   simple-git-hooks: true
   typeit: false
