@@ -3,7 +3,7 @@ import type { TanStackDevtoolsReactPlugin } from '@tanstack/react-devtools';
 import type { AnyRouter } from '@tanstack/react-router';
 import type { DevToolsProps } from 'jotai-devtools';
 import { useAtomsDevtools } from 'jotai-devtools/utils';
-import type { Store } from 'jotai/vanilla/store';
+import type { Store } from 'jotai';
 import { Suspense, lazy, useMemo } from 'react';
 
 import './Devtools.css';
