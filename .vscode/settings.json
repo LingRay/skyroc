@@ -148,7 +148,7 @@
   "terminal.integrated.stickyScroll.enabled": true,
 
   // 控制相关文件嵌套展示
-  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.enabled": false,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "package.json": "package-lock.json, pnpm*, .editorconfig,.gitattributes,.gitignore,.npmrc,tsconfig.json,.oxlintrc.json,.oxfmtrc.json,tsdown.config.ts,vitest.config.ts,vitest.setup.ts",
