@@ -19,6 +19,7 @@ export default defineConfig({
       shellAlias: '../../packages/web/admin'
     },
     server: {
+      open: false,
       port: 9528
     }
   }
