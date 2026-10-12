@@ -175,10 +175,10 @@ catalogs:
 
     # 开发者工具
     'jotai-devtools': 0.14.0
-    '@tanstack/react-query-devtools': ^5.91.1
-    '@tanstack/react-devtools': ^0.8.4
-    '@tanstack/devtools-vite': ^0.7.0
-    '@tanstack/react-router-devtools': ^1.140.0
+    '@tanstack/react-query-devtools': ^5.104.2
+    '@tanstack/react-devtools': ^0.10.13
+    '@tanstack/devtools-vite': ^0.8.5
+    '@tanstack/react-router-devtools': ^1.167.2
 
   # ==================== Native 端专用 ====================
   native:
@@ -301,3 +301,8 @@ catalogs:
   peer:
     react: 19.2.1
     react-dom: 19.2.1
+
+minimumReleaseAgeExclude:
+  - '@tanstack/query-core@5.104.2'
+  - '@tanstack/query-devtools@5.104.2'
+  - '@tanstack/react-query-devtools@5.104.2'
